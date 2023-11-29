@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @RequiredArgsConstructor
 @SuperBuilder
@@ -14,5 +16,5 @@ public class GroceryListShortDto {
 
     @NotEmpty
     @Size(max = 255)
-    private final String items;
+    private final List<String> items;
 }

@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface GroceryItemRepository extends JpaRepository<GroceryItem, Long> {
     List<GroceryItem> findAllByOrderById();
+
+    List<GroceryItem> findAllByNameIn(Iterable<String> names);
 }

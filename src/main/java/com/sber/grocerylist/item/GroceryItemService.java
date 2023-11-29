@@ -35,6 +35,11 @@ public class GroceryItemService {
         return groceryItemRepository.findAllByOrderById();
     }
 
+    @Transactional(readOnly = true)
+    public List<GroceryItem> findAllByName(Iterable<String> names) {
+        return groceryItemRepository.findAllByNameIn(names);
+    }
+
     public void deleteById(Long id) {
         groceryItemRepository.deleteById(id);
     }

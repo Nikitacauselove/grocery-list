@@ -25,18 +25,16 @@ public class GroceryListController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public GroceryListDto create(@PathVariable Long userId, @RequestBody @Valid GroceryListShortDto groceryListShortDto) {
-        User user = userService.findById(userId);
-        GroceryList groceryList = groceryListMapper.toGroceryList(user, groceryListShortDto);
+        GroceryList groceryList = groceryListMapper.toGroceryList(userService.findById(userId), groceryListShortDto);
 
         return groceryListMapper.toGroceryListDto(groceryListService.create(groceryList));
     }
 
     @PutMapping("/{listId}")
     public GroceryListDto update(@PathVariable Long userId, @PathVariable Long listId, @RequestBody @Valid GroceryListShortDto groceryListShortDto) {
-        userService.findById(userId);
-        GroceryList groceryList = groceryListMapper.toGroceryList(groceryListService.findById(listId), groceryListShortDto);
+        GroceryList updatedGroceryList = groceryListMapper.toGroceryList(userService.findById(userId), groceryListShortDto);
 
-        return groceryListMapper.toGroceryListDto(groceryListService.update(groceryList));
+        return groceryListMapper.toGroceryListDto(groceryListService.update(listId, updatedGroceryList));
     }
 
     @GetMapping("/{listId}")
