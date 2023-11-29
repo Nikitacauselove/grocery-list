@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.sber</groupId>
-    <artifactId>shopping-list</artifactId>
+    <artifactId>grocery-list</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
