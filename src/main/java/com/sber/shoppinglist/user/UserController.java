@@ -27,16 +27,16 @@ public class UserController {
         return userMapper.toUserDto(userService.create(user));
     }
 
-    @PutMapping("/{id}")
-    public UserDto update(@PathVariable Long id, @RequestBody @Valid UserShortDto userShortDto) {
-        User user = userMapper.toUser(userService.findById(id), userShortDto);
+    @PutMapping("/{userId}")
+    public UserDto update(@PathVariable Long userId, @RequestBody @Valid UserShortDto userShortDto) {
+        User user = userMapper.toUser(userService.findById(userId), userShortDto);
 
         return userMapper.toUserDto(userService.update(user));
     }
 
-    @GetMapping("/{id}")
-    public UserDto findById(@PathVariable Long id) {
-        return userMapper.toUserDto(userService.findById(id));
+    @GetMapping("/{userId}")
+    public UserDto findById(@PathVariable Long userId) {
+        return userMapper.toUserDto(userService.findById(userId));
     }
 
     @GetMapping
@@ -44,9 +44,9 @@ public class UserController {
         return userMapper.toUserDto(userService.findAll());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
-        userService.deleteById(id);
+    public void deleteById(@PathVariable Long userId) {
+        userService.deleteById(userId);
     }
 }

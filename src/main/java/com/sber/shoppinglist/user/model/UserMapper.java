@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserMapper {
     User toUser(UserShortDto userShortDto);
 
+    @Mapping(target = "id", source = "user.id")
     @Mapping(target = "name", source = "userShortDto.name")
     @Mapping(target = "surname", source = "userShortDto.surname")
     User toUser(User user, UserShortDto userShortDto);
