@@ -1,6 +1,6 @@
-package com.sber.grocerylist.user;
+package com.sber.grocerylist.author;
 
-import com.sber.grocerylist.user.model.User;
+import com.sber.grocerylist.author.model.Author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,29 +13,33 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Service
 @Transactional
-public class UserService {
-    private final UserRepository userRepository;
+public class AuthorService {
+    private final AuthorRepository authorRepository;
 
-    public User create(User user) {
-        return userRepository.save(user);
+    public Author create(Author author) {
+        return authorRepository.save(author);
     }
 
-    public User update(User user) {
-        return userRepository.save(user);
+    public Author update(Long userId, Author updatedAuthor) {
+        Author author = findById(userId);
+
+        author.setName(updatedAuthor.getName());
+        author.setSurname(updatedAuthor.getSurname());
+        return author;
     }
 
     @Transactional(readOnly = true)
-    public User findById(Long id) {
-        return userRepository.findById(id)
+    public Author findById(Long id) {
+        return authorRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пользователь с указанным идентификатором не найден"));
     }
 
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<Author> findAll() {
+        return authorRepository.findAll();
     }
 
     public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        authorRepository.deleteById(id);
     }
 }

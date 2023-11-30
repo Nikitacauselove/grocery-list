@@ -1,4 +1,4 @@
-INSERT INTO grocery_items (id, name)
+INSERT INTO item (id, name)
 VALUES (1, 'Арбуз'),
        (2, 'Яблоки'),
        (3, 'Апельсины'),

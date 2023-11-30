@@ -1,37 +1,26 @@
 package com.sber.grocerylist.list.model;
 
-import com.sber.grocerylist.item.GroceryItemService;
 import com.sber.grocerylist.item.model.GroceryItem;
 import com.sber.grocerylist.list.dto.GroceryListDto;
-import com.sber.grocerylist.list.dto.GroceryListShortDto;
-import com.sber.grocerylist.user.model.User;
+import com.sber.grocerylist.author.model.Author;
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.Mapping;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", imports = HashSet.class)
 public abstract class GroceryListMapper {
-    @Autowired
-    private GroceryItemService groceryItemService;
-
-    public GroceryList toGroceryList(User user, GroceryListShortDto groceryListShortDto) {
-        List<GroceryItem> items = groceryItemService.findAllByName(groceryListShortDto.getItems());
-
-        return new GroceryList(null, user, new HashSet<>(items));
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "items", expression = "java(new HashSet<>(groceryItems))")
+    public abstract GroceryList toGroceryList(Author author, List<GroceryItem> groceryItems);
 
     public GroceryListDto toGroceryListDto(GroceryList groceryList) {
-        List<String> ids = groceryList.getItems().stream().map(GroceryItem::getName).toList();
-
+        List<String> items = groceryList.getItems().stream().map(GroceryItem::getName).toList();
         GroceryListDto.GroceryListDtoBuilder<?, ?> groceryListDto = GroceryListDto.builder();
 
-        groceryListDto.items( ids );
-        groceryListDto.id( groceryList.getId() );
-
+        groceryListDto.id(groceryList.getId());
+        groceryListDto.items(items);
         return groceryListDto.build();
     }
 

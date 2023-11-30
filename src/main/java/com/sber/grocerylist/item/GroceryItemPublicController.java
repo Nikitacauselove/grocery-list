@@ -25,6 +25,6 @@ public class GroceryItemPublicController {
 
     @GetMapping
     public List<GroceryItemDto> findAll() {
-        return groceryItemMapper.toGroceryItemDto(groceryItemService.findAll());
+        return groceryItemMapper.toGroceryItemDto(groceryItemService.findAllByOrderById());
     }
 }

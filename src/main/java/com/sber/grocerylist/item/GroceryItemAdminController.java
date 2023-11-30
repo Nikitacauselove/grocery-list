@@ -27,9 +27,9 @@ public class GroceryItemAdminController {
 
     @PutMapping("/{itemId}")
     public GroceryItemDto update(@PathVariable Long itemId, @RequestBody @Valid GroceryItemShortDto groceryItemShortDto) {
-        GroceryItem groceryItem = groceryItemMapper.toGroceryItem(groceryItemService.findById(itemId), groceryItemShortDto);
+        GroceryItem updatedGroceryItem = groceryItemMapper.toGroceryItem(groceryItemShortDto);
 
-        return groceryItemMapper.toGroceryItemDto(groceryItemService.update(groceryItem));
+        return groceryItemMapper.toGroceryItemDto(groceryItemService.update(itemId, updatedGroceryItem));
     }
 
     @DeleteMapping("/{itemId}")

@@ -2,23 +2,24 @@ package com.sber.grocerylist.item.model;
 
 import com.sber.grocerylist.list.model.GroceryList;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @AllArgsConstructor
-@Data
 @Entity
+@EqualsAndHashCode
+@Getter
 @NoArgsConstructor
-@Table(name = "grocery_items")
+@Setter
+@Table(name = "item")
 public class GroceryItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "items")
     Set<GroceryList> lists;
 }

@@ -1,55 +1,55 @@
 package com.sber.grocerylist.list.model;
 
 import com.sber.grocerylist.item.model.GroceryItem;
-import com.sber.grocerylist.user.model.User;
+import com.sber.grocerylist.author.model.Author;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-@Data
+@EqualsAndHashCode
 @Entity
+@Getter
 @NoArgsConstructor
-@Table(name = "grocery_lists")
+@Setter
+@Table(name = "list")
 public class GroceryList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Author author;
 
-    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "grocery_list_items",
-            joinColumns = @JoinColumn(name="grocery_list_id"),
-            inverseJoinColumns = @JoinColumn(name="grocery_item_id")
-    )
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "list_item",
+            joinColumns = @JoinColumn(name = "list_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private Set<GroceryItem> items;
 
-    public void setItems(Set<GroceryItem> items) {
-        Set<GroceryItem> toRemove = this.items.stream().filter(item -> !items.contains(item)).collect(Collectors.toSet());
-        Set<GroceryItem> toAdd = items.stream().filter(item -> !this.items.contains(item)).collect(Collectors.toSet());
-
-        toRemove.forEach(this::removeItem);
-        toAdd.forEach(this::addItem);
-    }
-
-    private void addItem(GroceryItem groceryItem) {
+    public void addItem(GroceryItem groceryItem) {
         this.items.add(groceryItem);
         groceryItem.getLists().add(this);
     }
 
-    private void removeItem(GroceryItem groceryItem) {
+    public void removeItem(GroceryItem groceryItem) {
         this.items.remove(groceryItem);
         groceryItem.getLists().remove(this);
     }
 
-    @Override
-    public int hashCode() {
-        return Math.toIntExact(id);
+    public void setItems(Set<GroceryItem> groceryItems) {
+        if (this.items != null) {
+            Set<GroceryItem> toRemove = this.items.stream().filter(item -> !groceryItems.contains(item)).collect(Collectors.toSet());
+            Set<GroceryItem> toAdd = groceryItems.stream().filter(item -> !this.items.contains(item)).collect(Collectors.toSet());
+
+            toRemove.forEach(this::removeItem);
+            toAdd.forEach(this::addItem);
+        } else {
+            this.items = groceryItems;
+        }
     }
 }

@@ -1,16 +1,16 @@
-package com.sber.grocerylist.user.model;
+package com.sber.grocerylist.author.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
-@Data
 @Entity
+@EqualsAndHashCode
+@Getter
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@Setter
+@Table(name = "author")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

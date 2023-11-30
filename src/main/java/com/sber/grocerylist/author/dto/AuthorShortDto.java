@@ -1,20 +1,22 @@
-package com.sber.grocerylist.user.dto;
+package com.sber.grocerylist.author.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
-public class UserShortDto {
+public class AuthorShortDto {
     @NotEmpty
     @Size(max = 255)
-    private final String name;
+    private String name;
 
     @NotEmpty
     @Size(max = 255)
-    private final String surname;
+    private String surname;
 }

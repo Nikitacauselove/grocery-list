@@ -20,8 +20,11 @@ public class GroceryItemService {
         return groceryItemRepository.save(groceryItem);
     }
 
-    public GroceryItem update(GroceryItem groceryItem) {
-        return groceryItemRepository.save(groceryItem);
+    public GroceryItem update(Long id, GroceryItem updatedGroceryItem) {
+        GroceryItem groceryItem = findById(id);
+
+        groceryItem.setName(updatedGroceryItem.getName());
+        return groceryItem;
     }
 
     @Transactional(readOnly = true)
@@ -31,12 +34,12 @@ public class GroceryItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<GroceryItem> findAll() {
+    public List<GroceryItem> findAllByOrderById() {
         return groceryItemRepository.findAllByOrderById();
     }
 
     @Transactional(readOnly = true)
-    public List<GroceryItem> findAllByName(Iterable<String> names) {
+    public List<GroceryItem> findAllByNameIn(Iterable<String> names) {
         return groceryItemRepository.findAllByNameIn(names);
     }
 
