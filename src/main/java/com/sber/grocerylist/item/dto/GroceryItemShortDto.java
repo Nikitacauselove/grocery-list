@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @ToString
 public class GroceryItemShortDto {
-    @NotEmpty
-    @Size(max = 255)
+    @NotEmpty(message = "Название товара не может быть пустым")
+    @Size(max = 255, message = "Название товара не может быть длиннее 255 символов")
     private String name;
 }

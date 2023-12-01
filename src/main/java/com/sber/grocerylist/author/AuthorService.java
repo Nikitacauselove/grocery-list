@@ -1,12 +1,11 @@
 package com.sber.grocerylist.author;
 
 import com.sber.grocerylist.author.model.Author;
+import com.sber.grocerylist.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,8 +29,7 @@ public class AuthorService {
 
     @Transactional(readOnly = true)
     public Author findById(Long id) {
-        return authorRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пользователь с указанным идентификатором не найден"));
+        return authorRepository.findById(id).orElseThrow(() -> new NotFoundException("Пользователь с указанным идентификатором не найден"));
     }
 
     @Transactional(readOnly = true)

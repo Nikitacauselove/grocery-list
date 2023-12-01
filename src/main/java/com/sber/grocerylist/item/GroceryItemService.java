@@ -1,12 +1,11 @@
 package com.sber.grocerylist.item;
 
+import com.sber.grocerylist.exception.NotFoundException;
 import com.sber.grocerylist.item.model.GroceryItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,8 +28,7 @@ public class GroceryItemService {
 
     @Transactional(readOnly = true)
     public GroceryItem findById(Long id) {
-        return groceryItemRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Товар с указанным идентификатором не найден"));
+        return groceryItemRepository.findById(id).orElseThrow(() -> new NotFoundException("Товар с указанным идентификатором не найден"));
     }
 
     @Transactional(readOnly = true)

@@ -14,11 +14,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @ToString
 public class AuthorShortDto {
-    @NotEmpty
-    @Size(max = 255)
+    @NotEmpty(message = "Имя автора не может быть пустым")
+    @Size(max = 255, message = "Имя автора не может быть длиннее 255 символов")
     private String name;
 
-    @NotEmpty
-    @Size(max = 255)
+    @NotEmpty(message = "Фамилия автора не может быть пустой")
+    @Size(max = 255, message = "Фамилия автора не может быть длиннее 255 символов")
     private String surname;
 }

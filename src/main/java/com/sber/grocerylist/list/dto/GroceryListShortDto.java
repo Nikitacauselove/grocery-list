@@ -15,6 +15,6 @@ import java.util.List;
 @SuperBuilder
 @ToString
 public class GroceryListShortDto {
-    @NotNull
+    @NotNull(message = "Список покупок не может быть пустым")
     private List<String> items;
 }
