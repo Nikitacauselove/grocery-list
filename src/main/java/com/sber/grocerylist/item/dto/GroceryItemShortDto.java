@@ -5,12 +5,14 @@ import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode
 @Getter
 @NoArgsConstructor
 @SuperBuilder
+@ToString
 public class GroceryItemShortDto {
     @NotEmpty
     @Size(max = 255)

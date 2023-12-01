@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @SuperBuilder
+@ToString
 public class GroceryListShortDto {
     @NotNull
     private List<String> items;
