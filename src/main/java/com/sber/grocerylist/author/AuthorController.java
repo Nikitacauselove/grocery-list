@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping(path = "authors")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class AuthorController {
-    private final AuthorMapper authorMapper;
     private final AuthorService authorService;
+    private final AuthorMapper authorMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

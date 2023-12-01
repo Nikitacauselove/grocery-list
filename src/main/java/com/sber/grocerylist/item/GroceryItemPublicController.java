@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping(path = "items")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class GroceryItemPublicController {
-    private final GroceryItemMapper groceryItemMapper;
     private final GroceryItemService groceryItemService;
+    private final GroceryItemMapper groceryItemMapper;
 
     @GetMapping("/{itemId}")
     public GroceryItemDto findById(@PathVariable Long itemId) {

@@ -19,10 +19,10 @@ import java.util.List;
 @RequestMapping(path = "authors/{authorId}/lists")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class GroceryListController {
-    private final GroceryItemService groceryItemService;
-    private final GroceryListMapper groceryListMapper;
-    private final GroceryListService groceryListService;
     private final AuthorService authorService;
+    private final GroceryItemService groceryItemService;
+    private final GroceryListService groceryListService;
+    private final GroceryListMapper groceryListMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

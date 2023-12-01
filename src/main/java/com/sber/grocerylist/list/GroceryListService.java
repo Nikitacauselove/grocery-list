@@ -1,8 +1,6 @@
 package com.sber.grocerylist.list;
 
-import com.sber.grocerylist.list.dto.GroceryListShortDto;
 import com.sber.grocerylist.list.model.GroceryList;
-import com.sber.grocerylist.list.model.GroceryListMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

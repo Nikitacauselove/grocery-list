@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "admin/items")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class GroceryItemAdminController {
-    private final GroceryItemMapper groceryItemMapper;
     private final GroceryItemService groceryItemService;
+    private final GroceryItemMapper groceryItemMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
