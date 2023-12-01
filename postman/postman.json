@@ -1,0 +1,1258 @@
+{
+  "info": {
+    "_postman_id": "6ecb861d-837e-4b19-8a13-432f4944634a",
+    "name": "Grocery list",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26821723"
+  },
+  "item": [
+    {
+      "name": "Authors",
+      "item": [
+        {
+          "name": "Добавление нового автора",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Автор должен содержать поля: id, name, surname\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "    pm.expect(target).to.have.property('surname');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Имя автора должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.surname).equal(target.surname, 'Фамилия автора должна соответствовать отправленной в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Callan\",\r\n  \"surname\": \"Terry\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового автора без имени",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"surname\": \"Randolph\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового автора без фамилии",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Gabriela\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового автора",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Автор должен содержать поля: id, name, surname\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "    pm.expect(target).to.have.property('surname');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Имя автора должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.surname).equal(target.surname, 'Фамилия автора должна соответствовать отправленной в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Elsie\",\r\n  \"surname\": \"Foley\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Изменение информации об авторе",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Автор должен содержать поля: id, name, surname\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "    pm.expect(target).to.have.property('surname');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Имя автора должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.surname).equal(target.surname, 'Фамилия автора должна соответствовать отправленной в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Elsie\",\r\n  \"surname\": \"Terry\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение подробной информации об авторе по его идентификатору",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Автор должен содержать поля: id, name, surname\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "    pm.expect(target).to.have.property('surname');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).equal(2, 'Идентификатор автора должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target.name).equal('Elsie', 'Имя автора должно соответствовать указанному имени');\r",
+                  "    pm.expect(target.surname).equal('Terry', 'Фамилия автора должна соответствовать указанной фамилии');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск авторов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Пользователи должны содержать поля: id, name, surname\", function () {\r",
+                  "    pm.expect(target[0]).to.have.property('id');\r",
+                  "    pm.expect(target[0]).to.have.property('name');\r",
+                  "    pm.expect(target[0]).to.have.property('surname');\r",
+                  "    pm.expect(target[1]).to.have.property('id');\r",
+                  "    pm.expect(target[1]).to.have.property('name');\r",
+                  "    pm.expect(target[1]).to.have.property('surname');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Должны быть найдены только два пользователя\", function () {\r",
+                  "    pm.expect(target.length).to.eql(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target[0].id).equal(1, 'Идентификатор автора должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[0].name).equal('Callan', 'Имя автора должно соответствовать указанному имени');\r",
+                  "    pm.expect(target[0].surname).equal('Terry', 'Фамилия автора должна соответствовать указанной фамилии');\r",
+                  "    pm.expect(target[1].id).equal(2, 'Идентификатор автора должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[1].name).equal('Elsie', 'Имя автора должно соответствовать указанному имени');\r",
+                  "    pm.expect(target[1].surname).equal('Terry', 'Фамилия автора должна соответствовать указанной фамилии');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление автора",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение информации о несуществующем авторе",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "Добавление нового товара",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Товар должен содержать поля: id, name\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Ежевика\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового товара с пустым названием",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового товара",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Товар должен содержать поля: id, name\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Шоколад\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Изменение информации о товаре",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Товар должен содержать поля: id, name\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.name).equal(target.name, 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Мармелад\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/items/8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "items",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение подробной информации о товаре по его идентификатору",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Товар должен содержать поля: id, name\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('name');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).equal(8, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target.name).equal('Мармелад', 'Название товара должно соответствовать указанному названию');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items/8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск товаров",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Товары должны содержать поля: id, name\", function () {\r",
+                  "    pm.expect(target[0]).to.have.property('id');\r",
+                  "    pm.expect(target[0]).to.have.property('name');\r",
+                  "    pm.expect(target[1]).to.have.property('id');\r",
+                  "    pm.expect(target[1]).to.have.property('name');\r",
+                  "    pm.expect(target[2]).to.have.property('id');\r",
+                  "    pm.expect(target[2]).to.have.property('name');\r",
+                  "    pm.expect(target[3]).to.have.property('id');\r",
+                  "    pm.expect(target[3]).to.have.property('name');\r",
+                  "    pm.expect(target[4]).to.have.property('id');\r",
+                  "    pm.expect(target[4]).to.have.property('name');\r",
+                  "    pm.expect(target[5]).to.have.property('id');\r",
+                  "    pm.expect(target[5]).to.have.property('name');\r",
+                  "    pm.expect(target[6]).to.have.property('id');\r",
+                  "    pm.expect(target[6]).to.have.property('name');\r",
+                  "    pm.expect(target[7]).to.have.property('id');\r",
+                  "    pm.expect(target[7]).to.have.property('name');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Должны быть найдены только восемь товаров\", function () {\r",
+                  "    pm.expect(target.length).to.eql(8);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target[0].id).equal(1, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[0].name).equal('Арбуз', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[1].id).equal(2, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[1].name).equal('Яблоки', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[2].id).equal(3, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[2].name).equal('Апельсины', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[3].id).equal(4, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[3].name).equal('Молоко', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[4].id).equal(5, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[4].name).equal('Клубника', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[5].id).equal(6, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[5].name).equal('Творог', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[6].id).equal(7, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[6].name).equal('Ежевика', 'Название товара должно соответствовать указанному названию');\r",
+                  "    pm.expect(target[7].id).equal(8, 'Идентификатор товара должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[7].name).equal('Мармелад', 'Название товара должно соответствовать указанному названию');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление товара",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/items/8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "items",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение информации о несуществующем товаре",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items/8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Lists",
+      "item": [
+        {
+          "name": "Добавление нового списка покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Список покупок должен содержать поля: id, items\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('items');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Количество товаров должно соответствовать указанному количеству товаров\", function () {\r",
+                  "    pm.expect(target.items.length).to.eql(3);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.items[0]).equal(target.items[0], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[1]).equal(target.items[1], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[2]).equal(target.items[2], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"items\": [\r\n      \"Молоко\",\r\n      \"Яблоки\",\r\n      \"Апельсины\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление пустого списка покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление нового списка покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Список покупок должен содержать поля: id, items\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('items');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Количество товаров должно соответствовать указанному количеству товаров\", function () {\r",
+                  "    pm.expect(target.items.length).to.eql(4);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.items[0]).equal(target.items[0], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[1]).equal(target.items[1], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[2]).equal(target.items[2], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[3]).equal(target.items[3], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"items\": [\r\n      \"Яблоки\",\r\n      \"Клубника\",\r\n      \"Творог\",\r\n      \"Арбуз\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Изменение списка покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const source = JSON.parse(pm.request.body.raw);\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Список покупок должен содержать поля: id, items\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('items');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Количество товаров должно соответствовать указанному количеству товаров\", function () {\r",
+                  "    pm.expect(target.items.length).to.eql(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(source.items[0]).equal(target.items[0], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "    pm.expect(source.items[1]).equal(target.items[1], 'Название товара должно соответствовать отправленному в запросе');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"items\": [\r\n      \"Яблоки\",\r\n      \"Апельсины\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение подробной информации о списке покупок по его идентификатору",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Список покупок должен содержать поля: id, items\", function () {\r",
+                  "    pm.expect(target).to.have.property('id');\r",
+                  "    pm.expect(target).to.have.property('items');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Количество товаров должно соответствовать указанному количеству товаров\", function () {\r",
+                  "    pm.expect(target.items.length).to.eql(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target.id).to.not.be.null;\r",
+                  "    pm.expect(target.items[0]).equal('Яблоки', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target.items[1]).equal('Апельсины', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск списков покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+                  "    pm.response.to.be.ok;    \r",
+                  "    pm.response.to.be.withBody;\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "const target = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Списки покупок должны содержать поля: id, items\", function () {\r",
+                  "    pm.expect(target[0]).to.have.property('id');\r",
+                  "    pm.expect(target[0]).to.have.property('items');\r",
+                  "    pm.expect(target[1]).to.have.property('id');\r",
+                  "    pm.expect(target[1]).to.have.property('items');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Должны быть найдены только два списка покупок\", function () {\r",
+                  "    pm.expect(target.length).to.eql(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
+                  "    pm.expect(target[0].id).equal(1, 'Идентификатор списка покупок должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[0].items[0]).equal('Яблоки', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target[0].items[1]).equal('Апельсины', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target[1].id).equal(2, 'Идентификатор списка покупок должен соответствовать указанному идентификатору');\r",
+                  "    pm.expect(target[1].items[0]).equal('Яблоки', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target[1].items[1]).equal('Клубника', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target[1].items[2]).equal('Творог', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "    pm.expect(target[1].items[3]).equal('Арбуз', 'Название товара должно соответствовать указанному названию товара');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление списка покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение информации о несуществующем списке покупок",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/authors/1/lists/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authors",
+                "1",
+                "lists",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
